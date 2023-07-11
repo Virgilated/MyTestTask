@@ -8,6 +8,10 @@ correctly`, () => {
    let goodsPage = new GoodsPage();
    let categoryPage = new CategoryPage();
 
+   before(() => {
+      cy.clearAllCookies();
+   });
+
    context(`Step 1 - Open Main Page`, () => {
       before(() => {
          mainPage.visitMainPage();

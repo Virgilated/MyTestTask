@@ -38,19 +38,21 @@ export class BasePage extends CartModal {
       return cy.get(`.header [href*="cabinet/orders"]`);
    }
 
-   loginWithCredentials() {
+   loginWithCredentials({
+      username = Cypress.env(`USERNAME`),
+      passoword = Cypress.env(`PASSWORD`),
+   }) {
       this.headerUserButton.click();
-      this.loginModal.loginInput.type(Cypress.env(`USERNAME`));
-      this.loginModal.passwordInput.type(Cypress.env(`PASSWORD`));
+      this.loginModal.loginInput.type(username);
+      this.loginModal.passwordInput.type(passoword);
       this.loginModal.loginSubmitButton.click();
-      this.loginModal.captcha.click();
    }
 
    getNormalizedTitle(title) {
       if (title.includes(`+`)) {
-         return title.split(` +`)[0].toLowerCase().trim();
+         return title.split(` +`)[0].trim();
       }
-      return title.toLowerCase().trim();
+      return title.trim();
    }
 
    getNormalizedAmount(numbers) {

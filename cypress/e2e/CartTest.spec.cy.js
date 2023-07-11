@@ -130,7 +130,9 @@ describe(`Add items to the basket`, () => {
                .eq(index)
                .invoke(`text`)
                .then((title) => {
-                  expect(product.title).to.equal(title);
+                  expect(product.title).to.equal(
+                     goodsPage.getNormalizedTitle(title)
+                  );
                });
          });
       });

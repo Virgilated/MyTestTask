@@ -1,5 +1,14 @@
 {
-  "devDependencies": {
-    "cypress": "^12.17.0"
-  }
+   "devDependencies": {
+      "cypress": "^12.17.0",
+      "cypress-mochawesome-reporter": "^3.5.1"
+   },
+   "scripts": {
+      "test:cart": "cypress run --spec cypress/e2e/CartTest.spec.cy.js --browser chrome --headed",
+      "test:filter": "cypress run --spec cypress/e2e/FilterTest.spec.cy.js --browser chrome --headed",
+      "test:login": "cypress run --spec cypress/e2e/LoginTest.spec.cy.js --browser chrome --headed",
+      "test:seach_input": "cypress run --spec cypress/e2e/SeachInput.spec.cy.js --browser chrome --headed",
+      "test:all": "cypress run --browser chrome --headed",
+      "test:all_headless": "cypress run --browser chrome --headless"
+   }
 }
