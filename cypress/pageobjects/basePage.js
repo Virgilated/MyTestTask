@@ -38,7 +38,7 @@ export class BasePage extends CartModal {
         return cy.get(`.header [href*="cabinet/orders"]`);
     }
 
-    loginWithCredentials({ username = Cypress.env(`USERNAME`), passoword = Cypress.env(`PASSWORD`) }) {
+    loginWithCredentials({ username = Cypress.env(`USERNAME`), password = Cypress.env(`PASSWORD`) }) {
         this.headerUserButton.click();
         this.loginModal.loginInput.type(username);
         this.loginModal.passwordInput.type(passoword);
