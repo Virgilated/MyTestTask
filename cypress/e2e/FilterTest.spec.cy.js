@@ -25,7 +25,6 @@ correctly`, () => {
          mainPage.categories.should(`be.visible`);
       });
    });
-
    context(`Step 2 - Open the "Computers and Laptops" Category Page`, () => {
       before(() => {
          mainPage.categories.eq(0).click();
@@ -39,7 +38,6 @@ correctly`, () => {
          categoryPage.header.should(`have.text`, `Комп'ютери та ноутбуки`);
       });
    });
-
    context(`Step 3 - Open the "Monitors" Subcategory Page`, () => {
       before(() => {
          categoryPage.subcategoriesHeaders.eq(2).click();

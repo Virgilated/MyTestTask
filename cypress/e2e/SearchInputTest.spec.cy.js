@@ -22,6 +22,7 @@ describe(`Search The Item`, () => {
       it(`Validate Search Input is Visible`, () => {
          mainPage.searchInput.should(`be.visible`);
       });
+
       it(`Validate Search Submit Button is Visible`, () => {
          mainPage.searchSubmitButton.should(`be.visible`);
       });
@@ -40,6 +41,7 @@ describe(`Search The Item`, () => {
       it(`Validate Products Titles Are Visible`, () => {
          goodsPage.allItemsTitle.should(`be.visible`);
       });
+
       it(`Validate Products Are Displayed Correctly According To The Search Request`, () => {
          goodsPage.allGoods.each((el, index) => {
             expect(el.text().toLowerCase()).to.contain(searchInfo.toLowerCase());

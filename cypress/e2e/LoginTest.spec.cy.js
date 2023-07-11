@@ -24,8 +24,7 @@ describe(`Verify Login Working Correctly`, () => {
          mainPage.headerUserButton.should(`be.visible`);
       });
    });
-
-   context(`Step 2 - Login With Environment's Credentials`, () => {
+   context(`Step 2 - Login With Environment Credentials`, () => {
       before(() => {
          mainPage.loginWithCredentials({});
       });
