@@ -1,6 +1,8 @@
+
 import { MainPage } from "../pageobjects/main.page";
 import { GoodsPage } from "../pageobjects/goods.page";
 import { CategoryPage } from "../pageobjects/category.page";
+
 
 describe(`Add items to the basket`, () => {
    let mainPage = new MainPage();
@@ -12,7 +14,9 @@ describe(`Add items to the basket`, () => {
       cy.clearAllCookies();
    });
 
+
    context(`Step 1 - Open Main Page`, () => {
+
       before(() => {
          mainPage.visitMainPage();
       });
@@ -25,6 +29,7 @@ describe(`Add items to the basket`, () => {
          mainPage.categories.should(`be.visible`);
       });
    });
+
 
    context(`Step 2 - Open the "Smartphones, TV and electronics" Category`, () => {
       before(() => {
@@ -65,6 +70,7 @@ describe(`Add items to the basket`, () => {
          goodsPage.allItemsPrice.should(`be.visible`);
       });
    });
+
 
    context(`Step 4 - Add A Random Product`, () => {
       before(() => {
@@ -125,6 +131,7 @@ describe(`Add items to the basket`, () => {
                .invoke(`text`)
                .then((title) => {
                   expect(product.title).to.equal(goodsPage.getNormalizedTitle(title));
+
                });
          });
       });

@@ -6,7 +6,7 @@ describe(`Verify Login Working Correctly`, () => {
    before(() => {
       cy.clearAllCookies();
    });
-
+  
    context(`Step 1 - Open Main Page`, () => {
       before(() => {
          mainPage.visitMainPage();
@@ -24,7 +24,7 @@ describe(`Verify Login Working Correctly`, () => {
          mainPage.headerUserButton.should(`be.visible`);
       });
    });
-
+  
    context(`Step 2 - Login With Environment's Credentials`, () => {
       before(() => {
          mainPage.loginWithCredentials({});
