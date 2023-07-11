@@ -41,7 +41,7 @@ export class BasePage extends CartModal {
     loginWithCredentials({ username = Cypress.env(`USERNAME`), password = Cypress.env(`PASSWORD`) }) {
         this.headerUserButton.click();
         this.loginModal.loginInput.type(username);
-        this.loginModal.passwordInput.type(passoword);
+        this.loginModal.passwordInput.type(password);
         this.loginModal.loginSubmitButton.click();
     }
 
