@@ -1,8 +1,4 @@
 export class CartModal {
-   get productsBody() {
-      return cy.get(`[class*="cart"][class*="body"]`);
-   }
-
    get sumPrice() {
       return cy.get(`[class*="sum-price"]`);
    }
@@ -19,19 +15,21 @@ export class CartModal {
       return cy.get(`[class*="cart"][class*="list"] [class*="body"]`);
    }
 
-   get productPrice() {
-      return cy.get(`[data-testid="cost"]`);
-   }
-
    get modalHeader() {
       return cy.get(`h3[class*="modal"]`);
    }
 
    get allProductsTitles() {
-      return cy.get(`[class*="cart"][class*="item"] [data-testid="title"]`);
+      return cy.get(`[data-testid="title"]`);
    }
 
    get allProductsPrices() {
-      return cy.get(`[class*="cart"][class*="item"] [data-testid="cost"]`);
+      return cy.get(`[data-testid="cost"]`);
+   }
+   get cartActions() {
+      return cy.get(`.cart [class*="actions"] button`);
+   }
+   get cartDeleteButton() {
+      return cy.contains(`Видалити`);
    }
 }
