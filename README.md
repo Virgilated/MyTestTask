@@ -21,7 +21,7 @@ node -v (v18.16.0 recommended)
 ```
 
 ```
-nmp -v (v9.5.1 recommended)
+npm -v (v9.5.1 recommended)
 ```
 
 ## Plugins
@@ -51,23 +51,23 @@ Run the following commands to start running different test cases:
 
 # Reporter
 
-As soon as the test run is finished, `Cypress-mochawesome-reporter` will automatically generate and open test results.
+When the test run is finished, `Cypress-mochawesome-reporter` will automatically generate and open test results.
 
 # Afterwords
 
 ## Details
 
-Rozetka have so many ways to use their website. It's have a really big number of conditions. Each page can heavily differ from the other one. Obviously, i didn't want to provide "flaky" tests for you. So i choose concrete ways for each test case. For example, in `cypress/e2e/CartTest.spec.cy.js` i needed to add product to my cart, and i did it from the specific "Televizors" Category. Only a product is randomly chosen, not a category. By the way, I needed to verify that price in the cart is calculated correctly. But for some reason you can't just get the quantity of the product you've added to the basket from the DOM. So I intercepted the request with the parameter i needed via `cy.intercept()`. It made possible for me to wrote the autotest that meet your requirements.
+Rozetka has so many ways to use their website. It has a huge number of conditions. Each page can heavily differ from the other one. Obviously, I didn't want to provide "flaky" tests for you. So I choose concrete ways for each test case. For example, in `cypress/e2e/CartTest.spec.cy.js` I needed to add product to my cart, and I did it from the specific "Televizors" Category. Only a product is randomly chosen, not a category. By the way, I needed to verify that the price in the cart is calculated correctly. But for some reason, you can't just get the quantity of the product you've added to the basket from the DOM (I mean in the case with Rozetka). So I intercepted the request with the parameter I needed via `cy.intercept()`. It made an opportunity for me to write the autotest that meets your requirements.
 
 ## Directory structure
 
--  **e2e** - contains test files. Every file related to the specific test case.
+-  **e2e** - contains test files. Every file is related to the specific test case.
 -  **pageobjects** - contains the page selectors.
--  **reports** - you won't have this folder from the box, but you will. There will store reports after runs.
+-  **reports** - you won't have this folder from the box, but you will. There will be stored reports after runs.
 -  If screenshots were taken via the cy.screenshot() command or automatically when a test fails, the screenshots are stored in the screenshots folder which is set to **cypress/screenshots** by default.
--  **cypress/videos** - default folder for recorded tests failures.
+-  **cypress/videos** - default folder for recorded test failures.
 -  **support** folder includes:
-   -  `commands.js` - "Uncaught: Type Error" that appears on ["Rozetka"](https://rozetka.com.ua/ua/) stops the test run automatically, so I had to write the exeption for that here.
+   -  `commands.js` - "Uncaught: Type Error" that appears on ["Rozetka"](https://rozetka.com.ua/ua/) stops the test run automatically, so I had to write the exception for that here.
 -  `cypress.env.json` - the environment variables are written here.
 -  `cypress.config.js` - the first time you open Cypress Test Runner, it creates the `cypress.config.js` configuration file. This file is used to store any configuration values you supply.
--  `.prettierrc` - the configuration for "Prettier" plugin.
+-  `.prettierrc` - the configuration for the "Prettier" plugin.
