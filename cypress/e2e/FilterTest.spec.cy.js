@@ -1,6 +1,6 @@
-import { MainPage } from '../../src/pageobjects/main.page';
-import { GoodsPage } from '../../src/pageobjects/goods.page';
-import { CategoryPage } from '../../src/pageobjects/category.page';
+import { MainPage } from "../pageobjects/main.page";
+import { GoodsPage } from "../pageobjects/goods.page";
+import { CategoryPage } from "../pageobjects/category.page";
 
 describe(`Verify if the price filter working
 correctly`, () => {
@@ -25,6 +25,7 @@ correctly`, () => {
          mainPage.categories.should(`be.visible`);
       });
    });
+
    context(`Step 2 - Open the "Computers and Laptops" Category Page`, () => {
       before(() => {
          mainPage.categories.eq(0).click();
@@ -38,6 +39,7 @@ correctly`, () => {
          categoryPage.header.should(`have.text`, `Комп'ютери та ноутбуки`);
       });
    });
+
    context(`Step 3 - Open the "Monitors" Subcategory Page`, () => {
       before(() => {
          categoryPage.subcategoriesHeaders.eq(2).click();
@@ -71,34 +73,29 @@ correctly`, () => {
          goodsPage.maxPriceFilter.should(`be.visible`);
       });
    });
-   context(
-      `Step 4 - Apply The Following Filters: Price, Brand, Ready For Delivery`,
-      () => {
-         before(() => {
-            goodsPage.applyTheFilters();
-            goodsPage.pagePreloader.should(`not.exist`);
-         });
 
-         it(`Validate The Products Fit The Prices Filters`, () => {
-            goodsPage.allItemsPrice.each((el) => {
-               expect(goodsPage.getNormalizedAmount(el.text())).to.be.within(
-                  10000,
-                  15000
-               );
-            });
-         });
+   context(`Step 4 - Apply The Following Filters: Price, Brand, Ready For Delivery`, () => {
+      before(() => {
+         goodsPage.applyTheFilters();
+         goodsPage.pagePreloader.should(`not.exist`);
+      });
 
-         it(`Validate The Products Fit The Brand Filter`, () => {
-            goodsPage.allItemsTitle.each((el) => {
-               expect(el).to.contain(`AOC`);
-            });
+      it(`Validate The Products Fit The Prices Filters`, () => {
+         goodsPage.allItemsPrice.each((el) => {
+            expect(goodsPage.getNormalizedAmount(el.text())).to.be.within(10000, 15000);
          });
+      });
 
-         it(`Validate The Products Fit The Delivery Filter`, () => {
-            goodsPage.allAvailiableSigns.each((el) => {
-               expect(el).to.contain(`Готовий до відправлення`);
-            });
+      it(`Validate The Products Fit The Brand Filter`, () => {
+         goodsPage.allItemsTitle.each((el) => {
+            expect(el).to.contain(`AOC`);
          });
-      }
-   );
+      });
+
+      it(`Validate The Products Fit The Delivery Filter`, () => {
+         goodsPage.allAvailiableSigns.each((el) => {
+            expect(el).to.contain(`Готовий до відправлення`);
+         });
+      });
+   });
 });

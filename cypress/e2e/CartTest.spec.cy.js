@@ -1,6 +1,6 @@
-import { MainPage } from '../../src/pageobjects/main.page';
-import { GoodsPage } from '../../src/pageobjects/goods.page';
-import { CategoryPage } from '../../src/pageobjects/category.page';
+import { MainPage } from "../pageobjects/main.page";
+import { GoodsPage } from "../pageobjects/goods.page";
+import { CategoryPage } from "../pageobjects/category.page";
 
 describe(`Add items to the basket`, () => {
    let mainPage = new MainPage();
@@ -12,7 +12,7 @@ describe(`Add items to the basket`, () => {
       cy.clearAllCookies();
    });
 
-   context(`Step 1 - Go To The Main Page`, () => {
+   context(`Step 1 - Open Main Page`, () => {
       before(() => {
          mainPage.visitMainPage();
       });
@@ -26,25 +26,19 @@ describe(`Add items to the basket`, () => {
       });
    });
 
-   context(
-      `Step 2 - Open the "Smartphones, TV and electronics" Category`,
-      () => {
-         before(() => {
-            mainPage.categories.eq(1).click();
-         });
+   context(`Step 2 - Open the "Smartphones, TV and electronics" Category`, () => {
+      before(() => {
+         mainPage.categories.eq(1).click();
+      });
 
-         it(`Validate Header is Visible`, () => {
-            categoryPage.header.should(`be.visible`);
-         });
+      it(`Validate Header is Visible`, () => {
+         categoryPage.header.should(`be.visible`);
+      });
 
-         it(`Validate Header`, () => {
-            categoryPage.header.should(
-               `have.text`,
-               `Смартфони, ТВ і Електроніка`
-            );
-         });
-      }
-   );
+      it(`Validate Header`, () => {
+         categoryPage.header.should(`have.text`, `Смартфони, ТВ і Електроніка`);
+      });
+   });
 
    context(`Step 3 - Open The "Televizors" Subcategory Page`, () => {
       before(() => {
@@ -71,6 +65,7 @@ describe(`Add items to the basket`, () => {
          goodsPage.allItemsPrice.should(`be.visible`);
       });
    });
+
    context(`Step 4 - Add A Random Product`, () => {
       before(() => {
          myProducts.push(goodsPage.addRandomProduct());
@@ -86,23 +81,22 @@ describe(`Add items to the basket`, () => {
          });
       });
    });
-   context(
-      `Step 5 - Add A Random Product From "Household equipment" Category, "Vacuum Cleaners" Subcategory`,
-      () => {
-         before(() => {
-            goodsPage.visitMainPage();
-            mainPage.categories.eq(3).click();
-            categoryPage.subcategoriesHeaders.eq(1).click();
-            myProducts.push(goodsPage.addRandomProduct());
-         });
 
-         it(`Validate Number of Products On The Cart Bagde Equals TWO`, () => {
-            goodsPage.numberOfGoodsInCart.invoke(`text`).then((quantity) => {
-               expect(goodsPage.getNormalizedAmount(quantity)).to.equal(2);
-            });
+   context(`Step 5 - Add A Random Product From "Household equipment" Category, "Vacuum Cleaners" Subcategory`, () => {
+      before(() => {
+         goodsPage.visitMainPage();
+         mainPage.categories.eq(3).click();
+         categoryPage.subcategoriesHeaders.eq(1).click();
+         myProducts.push(goodsPage.addRandomProduct());
+      });
+
+      it(`Validate Number of Products On The Cart Bagde Equals TWO`, () => {
+         goodsPage.numberOfGoodsInCart.invoke(`text`).then((quantity) => {
+            expect(goodsPage.getNormalizedAmount(quantity)).to.equal(2);
          });
-      }
-   );
+      });
+   });
+
    context(`Step 6 - Open The Cart Page`, () => {
       before(() => {
          goodsPage.headerCartButton.click();
@@ -130,9 +124,7 @@ describe(`Add items to the basket`, () => {
                .eq(index)
                .invoke(`text`)
                .then((title) => {
-                  expect(product.title).to.equal(
-                     goodsPage.getNormalizedTitle(title)
-                  );
+                  expect(product.title).to.equal(goodsPage.getNormalizedTitle(title));
                });
          });
       });
@@ -143,9 +135,7 @@ describe(`Add items to the basket`, () => {
                .eq(index)
                .invoke(`text`)
                .then((price) => {
-                  expect(goodsPage.getNormalizedAmount(price)).to.equal(
-                     product.price * product.quantity
-                  );
+                  expect(goodsPage.getNormalizedAmount(price)).to.equal(product.price * product.quantity);
                });
          });
       });
@@ -153,9 +143,7 @@ describe(`Add items to the basket`, () => {
       it(`Validate That The Delete Item Buttons are Clickable`, () => {
          myProducts.forEach((product, index) => {
             goodsPage.cartModal.cartActions.eq(index).click();
-            goodsPage.cartModal.cartDeleteButton
-               .should(`be.enabled`)
-               .and(`be.visible`);
+            goodsPage.cartModal.cartDeleteButton.should(`be.enabled`).and(`be.visible`);
             goodsPage.cartModal.modalHeader.click();
          });
       });

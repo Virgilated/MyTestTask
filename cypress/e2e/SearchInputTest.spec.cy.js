@@ -1,10 +1,14 @@
-import { GoodsPage } from '../../src/pageobjects/goods.page';
-import { MainPage } from '../../src/pageobjects/main.page';
+import { GoodsPage } from "../pageobjects/goods.page";
+import { MainPage } from "../pageobjects/main.page";
 
 describe(`Search The Item`, () => {
    let mainPage = new MainPage();
    let goodsPage = new GoodsPage();
-   let searchInfo = 'Lenovo IdeaPad';
+   let searchInfo = "Lenovo IdeaPad";
+
+   before(() => {
+      cy.clearAllCookies();
+   });
 
    context(`Step 1 - Open Main Page`, () => {
       before(() => {
@@ -22,7 +26,8 @@ describe(`Search The Item`, () => {
          mainPage.searchSubmitButton.should(`be.visible`);
       });
    });
-   context(`Step 2 - Search The Item By Name ${searchInfo}`, () => {
+
+   context(`Step 2 - Search The Item By Name '${searchInfo}'`, () => {
       before(() => {
          mainPage.searchInput.type(searchInfo);
          mainPage.searchSubmitButton.click();
@@ -37,9 +42,7 @@ describe(`Search The Item`, () => {
       });
       it(`Validate Products Are Displayed Correctly According To The Search Request`, () => {
          goodsPage.allGoods.each((el, index) => {
-            expect(el.text().toLowerCase()).to.contain(
-               searchInfo.toLowerCase()
-            );
+            expect(el.text().toLowerCase()).to.contain(searchInfo.toLowerCase());
          });
       });
    });
